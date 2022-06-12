@@ -1,38 +1,38 @@
 import { useEffect, useState } from 'react';
 
 // an editable grid cell for placing a number in a grid
-interface GridCellProps {
-  value: number;
+export interface GridCellProps {
   cellKey: string;
   diceValues: number[];
-  onChange: (value: number) => void;
+  highlight: boolean;
+  position: string;
+  updateHighlight: (highlight: boolean, position: string) => void;
 }
 
 export const GridCell = (props: GridCellProps) => {
-  const { cellKey, diceValues, onChange } = props;
+  const { cellKey, diceValues, position, updateHighlight } = props;
   const [editing, setEditing] = useState(false);
-  const [newValue, setNewValue] = useState(0);
+  const [value, setValue] = useState(0);
   const [highlighted, setHighlighted] = useState(false);
 
   useEffect(() => {
-    if (diceValues.includes(newValue)) {
+    if (diceValues.includes(value)) {
       setHighlighted(true);
+      updateHighlight(true, position);
     }
-  }, [newValue, diceValues]);
+  }, [diceValues, value]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setNewValue(Number(e.target.value));
+    setValue(Number(e.target.value));
   };
 
   const handleBlur = () => {
     setEditing(false);
-    onChange(newValue);
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter' || e.key === 'Escape' || e.key === 'Tab') {
       setEditing(false);
-      onChange(newValue);
     }
   };
 
@@ -46,15 +46,11 @@ export const GridCell = (props: GridCellProps) => {
   };
 
   return (
-    <td
-      key={cellKey}
-      onClick={handleClick}
-      style={{ backgroundColor: highlighted ? 'yellow' : 'fff' }}
-    >
+    <>
       {editing ? (
         <input
           type='number'
-          value={newValue}
+          value={value}
           onChange={handleChange}
           onBlur={handleBlur}
           onKeyDown={handleKeyDown}
@@ -72,11 +68,12 @@ export const GridCell = (props: GridCellProps) => {
             textAlign: 'center',
             cursor: 'hand',
             justifyItems: 'center',
+            backgroundColor: highlighted ? '#ffc0cb' : '#ffffff',
           }}
         >
-          {newValue}
+          {value}
         </span>
       )}
-    </td>
+    </>
   );
 };
