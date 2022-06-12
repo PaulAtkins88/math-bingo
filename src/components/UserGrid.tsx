@@ -13,8 +13,7 @@ interface UserGridProps {
 type IGridCell = ReactElement<GridCellProps>;
 
 export const UserGrid = (props: UserGridProps) => {
-  const { rows, cols, diceValues } = props;
-
+  const { rows, cols, diceValues, player } = props;
   // use a 2d array of GridCell components to render the grid
   const [grid, setGrid] = useState<IGridCell[][]>([]);
   // create a 2d array to map highlighted cells to the correct cell and set it to false
@@ -36,8 +35,8 @@ export const UserGrid = (props: UserGridProps) => {
         highlighted[i][j] = false;
         grid[i][j] = (
           <GridCell
-            key={`${i}-${j}`}
-            cellKey={`${i}-${j}`}
+            key={`${player}-${i}-${j}`}
+            cellKey={`${player}-${i}-${j}`}
             diceValues={diceValues}
             highlight={highlighted[i][j]}
             updateHighlight={handleHighlight}
@@ -117,13 +116,6 @@ export const UserGrid = (props: UserGridProps) => {
     <>
       <h2>{props.heading}</h2>
       <Table striped bordered hover>
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>#</th>
-            <th>#</th>
-          </tr>
-        </thead>
         <tbody>
           {grid.map((row, i) => (
             <tr key={i}>
