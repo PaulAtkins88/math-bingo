@@ -1,8 +1,3 @@
-// this component will handle the dice value for the game
-// it can have 1 or more die
-// it keeps track of the value of each die and uses the method specified to get the value of the die combined
-// it can be used to get the value of a single die or all dice
-
 import { useEffect, useState } from 'react';
 
 interface DiceProps {
@@ -10,6 +5,7 @@ interface DiceProps {
   value: number;
   onChange: (value: number) => void;
 }
+
 export const Dice = (props: DiceProps) => {
   const { dice, value, onChange } = props;
   const [newValue, setNewValue] = useState(value);
@@ -23,6 +19,7 @@ export const Dice = (props: DiceProps) => {
   const handleClick = () => {
     // roll all the dice and get the value
     const newDiceValues: number[] = [];
+
     for (let i = 0; i < dice; i++) {
       newDiceValues.push(Math.floor(Math.random() * 6) + 1);
     }
