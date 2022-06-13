@@ -1,10 +1,7 @@
 import { useState } from 'react';
-import { Button, Col, Container, Row } from 'react-bootstrap';
+import { Col, Container, Row } from 'react-bootstrap';
 import { Dice } from './components/Dice';
 import { UserGrid } from './components/UserGrid';
-import ReactDice from 'react-dice-complete';
-import 'react-dice-complete/dist/react-dice-complete.css';
-import DiceSet from './components/DiceSet';
 
 interface GameProps {
   rows: number;
@@ -41,8 +38,9 @@ export const Game = (props: GameProps) => {
   }
 
   const onDiceRoll = (value: number) => {
+    console.log(`You rolled a ${value}`);
     setDiceValues([...diceValues, value]);
-    console.log(diceValues);
+    // console.log(diceValues);
   };
 
   return (
@@ -50,20 +48,11 @@ export const Game = (props: GameProps) => {
       <Row>{userGrids}</Row>
       <Row>
         <Col>
-          {/* <Dice
+          <Dice
             dice={dice}
             onChange={(value: number) => onDiceRoll(value)}
-            value={0} 
-          /> */}  
-
-          {/* <ReactDice
-            numDice={dice}
-            rollDone={(value: number) => onDiceRoll(value)}
-          /> */}
-          
-          {/* Adding in the class */}
-          <DiceSet /> 
-          
+            value={0}
+          />
         </Col>
       </Row>
     </Container>
