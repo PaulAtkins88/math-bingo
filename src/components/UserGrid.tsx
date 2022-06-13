@@ -62,7 +62,7 @@ export const UserGrid = (props: UserGridProps) => {
       if (grid.length === 0) {
         return false;
       }
-      console.log('checkWin: checking for win');
+      // console.log('checkWin: checking for win');
       // check rows
       for (let i = 0; i < grid.length; i++) {
         let row = true;
