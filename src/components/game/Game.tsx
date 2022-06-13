@@ -1,28 +1,22 @@
 import { useState } from 'react';
-import { Col, Container, Row } from 'react-bootstrap';
-import { Dice } from './components/Dice';
-import { UserGrid } from './components/UserGrid';
+import { Button, Col, Container, Row } from 'react-bootstrap';
+import GameSetupModel from '../../models/GameSetup.model';
+import { Dice } from './Dice';
+import { UserGrid } from './UserGrid';
 
 interface GameProps {
-  rows: number;
-  cols: number;
-  dice: number;
-  players: number;
+  gameSetup: GameSetupModel;
+  handleReset: () => void;
 }
 
 export const Game = (props: GameProps) => {
+  const { players, rows, cols, dice } = props.gameSetup;
+
   // keep track of the values returned from the dice
   const [diceValues, setDiceValues] = useState(Array().fill(0));
-  // keep track of the number of dice
-  const [dice, setDice] = useState(props.dice);
-  // keep track of the number of rows
-  const [rows, setRows] = useState(props.rows);
-  // keep track of the number of columns
-  const [cols, setCols] = useState(props.cols);
-  // keep track of the heading
 
   const userGrids: JSX.Element[] = [];
-  for (let i = 0; i < props.players; i++) {
+  for (let i = 0; i < players; i++) {
     userGrids.push(
       <Col>
         <UserGrid
@@ -42,6 +36,14 @@ export const Game = (props: GameProps) => {
     setDiceValues([...diceValues, value]);
   };
 
+  const handleReset = () => {
+    setDiceValues(Array().fill(0));
+    props.handleReset();
+  };
+  console.log(
+    `Game: players: ${players}, rows: ${rows}, cols: ${cols}, dice: ${dice}`
+  );
+  console.log(`Dice values: ${diceValues}`);
   return (
     <Container>
       <Row>{userGrids}</Row>
@@ -52,6 +54,11 @@ export const Game = (props: GameProps) => {
             onChange={(value: number) => onDiceRoll(value)}
             value={0}
           />
+        </Col>
+      </Row>
+      <Row>
+        <Col>
+          <Button onClick={handleReset}>Reset</Button>
         </Col>
       </Row>
     </Container>
