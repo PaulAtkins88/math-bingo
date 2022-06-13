@@ -24,6 +24,13 @@ function App() {
     setSetupDone(false);
   };
 
+  const handleWin = (player: number) => {
+    console.log(`Player ${player + 1} won!`);
+    //TODO: Replace this with a fancy modal that rains a bunch of confetti
+    alert(`Player ${player + 1} won!`);
+    handleReset();
+  };
+
   return (
     <div className='App'>
       <h1 style={{ textAlign: 'center' }}>Maths Bingo</h1>
@@ -34,7 +41,11 @@ function App() {
           <GameSetup gameSetup={gameSetup} onSubmit={handleSubmit} />
         </>
       ) : (
-        <Game gameSetup={gameSetup} handleReset={handleReset} />
+        <Game
+          gameSetup={gameSetup}
+          handleReset={handleReset}
+          handleWin={handleWin}
+        />
       )}
     </div>
   );
