@@ -32,19 +32,18 @@ export const Game = (props: GameProps) => {
           heading={`Player ${i + 1}`}
           diceValues={diceValues}
           player={i}
+          totalDice={dice}
         />
       </Col>
     );
   }
 
   const onDiceRoll = (value: number) => {
-    console.log(`You rolled a ${value}`);
     setDiceValues([...diceValues, value]);
-    // console.log(diceValues);
   };
 
   return (
-    <Container key={'test'}>
+    <Container>
       <Row>{userGrids}</Row>
       <Row>
         <Col>

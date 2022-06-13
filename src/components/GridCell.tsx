@@ -6,11 +6,12 @@ export interface GridCellProps {
   diceValues: number[];
   highlight: boolean;
   position: string;
+  totalDice: number;
   updateHighlight: (highlight: boolean, position: string) => void;
 }
 
 export const GridCell = (props: GridCellProps) => {
-  const { cellKey, diceValues, position, updateHighlight } = props;
+  const { cellKey, diceValues, position, totalDice, updateHighlight } = props;
   const [editing, setEditing] = useState(false);
   const [value, setValue] = useState(0);
   const [highlighted, setHighlighted] = useState(false);
@@ -50,12 +51,14 @@ export const GridCell = (props: GridCellProps) => {
       {editing ? (
         <input
           type='number'
-          value={value}
           onChange={handleChange}
+          value={value}
           onBlur={handleBlur}
           onKeyDown={handleKeyDown}
           style={{ width: '100%', textAlign: 'center' }}
-          min={1}
+          min={totalDice}
+          // set the maximum number of input to the total number of dice times 6
+          max={totalDice * 6}
         />
       ) : (
         <span

@@ -8,12 +8,13 @@ interface UserGridProps {
   heading: string;
   diceValues: number[];
   player: number;
+  totalDice: number;
 }
 
 type IGridCell = ReactElement<GridCellProps>;
 
 export const UserGrid = (props: UserGridProps) => {
-  const { rows, cols, diceValues, player } = props;
+  const { rows, cols, diceValues, player, totalDice } = props;
   // use a 2d array of GridCell components to render the grid
   const [grid, setGrid] = useState<IGridCell[][]>([]);
   // create a 2d array to map highlighted cells to the correct cell and set it to false
@@ -41,6 +42,7 @@ export const UserGrid = (props: UserGridProps) => {
             highlight={highlighted[i][j]}
             updateHighlight={handleHighlight}
             position={`${i}-${j}`}
+            totalDice={totalDice}
           />
         );
       }
