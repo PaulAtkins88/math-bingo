@@ -7,10 +7,12 @@ import { UserGrid } from './UserGrid';
 interface GameProps {
   gameSetup: GameSetupModel;
   handleReset: () => void;
+  handleWin: (player: number) => void;
 }
 
 export const Game = (props: GameProps) => {
-  const { players, rows, cols, dice } = props.gameSetup;
+  const { gameSetup, handleWin } = props;
+  const { players, rows, cols, dice } = gameSetup;
 
   // keep track of the values returned from the dice
   const [diceValues, setDiceValues] = useState(Array().fill(0));
@@ -27,6 +29,7 @@ export const Game = (props: GameProps) => {
           diceValues={diceValues}
           player={i}
           totalDice={dice}
+          handleWin={handleWin}
         />
       </Col>
     );
@@ -40,10 +43,7 @@ export const Game = (props: GameProps) => {
     setDiceValues(Array().fill(0));
     props.handleReset();
   };
-  console.log(
-    `Game: players: ${players}, rows: ${rows}, cols: ${cols}, dice: ${dice}`
-  );
-  console.log(`Dice values: ${diceValues}`);
+
   return (
     <Container>
       <Row>{userGrids}</Row>

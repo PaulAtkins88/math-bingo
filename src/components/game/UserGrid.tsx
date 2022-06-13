@@ -9,12 +9,13 @@ interface UserGridProps {
   diceValues: number[];
   player: number;
   totalDice: number;
+  handleWin: (player: number) => void;
 }
 
 type IGridCell = ReactElement<GridCellProps>;
 
 export const UserGrid = (props: UserGridProps) => {
-  const { rows, cols, diceValues, player, totalDice } = props;
+  const { rows, cols, diceValues, player, totalDice, handleWin } = props;
   // use a 2d array of GridCell components to render the grid
   const [grid, setGrid] = useState<IGridCell[][]>([]);
   // create a 2d array to map highlighted cells to the correct cell and set it to false
@@ -24,7 +25,6 @@ export const UserGrid = (props: UserGridProps) => {
     const [row, col] = position.split('-').map(Number);
     highlighted[row][col] = highlight;
     setHighlighted([...highlighted]);
-    console.log(`handleHighlight: ${highlight} ${position}`);
   };
   // create a 2d array of GridCell components
   const createGrid = () => {
@@ -64,7 +64,7 @@ export const UserGrid = (props: UserGridProps) => {
       if (grid.length === 0) {
         return false;
       }
-      // console.log('checkWin: checking for win');
+
       // check rows
       for (let i = 0; i < grid.length; i++) {
         let row = true;
@@ -105,14 +105,12 @@ export const UserGrid = (props: UserGridProps) => {
 
     // check if a user has won
     if (grid.length > 0 && checkWin()) {
-      alert(`Player ${props.player} wins!`);
+      handleWin(player);
     }
   }, [diceValues, grid, props.player]);
 
   // watch the grid array for changes
-  useEffect(() => {
-    // console.log('userGrid: grid changed');
-  }, [grid]);
+  useEffect(() => {}, [grid]);
 
   return (
     <>
