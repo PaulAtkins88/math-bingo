@@ -18,11 +18,12 @@ export const Game = (props: GameProps) => {
   const [diceValues, setDiceValues] = useState(Array().fill(0));
 
   const userGrids: JSX.Element[] = [];
+  let tabIndexCounter = 1;
   for (let i = 0; i < players; i++) {
     userGrids.push(
-      <Col>
+      <Col key={`col-${i}`}>
         <UserGrid
-          key={i}
+          key={`user-grid-${i}`}
           rows={rows}
           cols={cols}
           heading={`Player ${i + 1}`}
@@ -30,6 +31,7 @@ export const Game = (props: GameProps) => {
           player={i}
           totalDice={dice}
           handleWin={handleWin}
+          tabIndexCounter={tabIndexCounter++}
         />
       </Col>
     );
