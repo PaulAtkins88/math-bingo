@@ -9,13 +9,22 @@ interface UserGridProps {
   diceValues: number[];
   player: number;
   totalDice: number;
+  tabIndexCounter: number;
   handleWin: (player: number) => void;
 }
 
 type IGridCell = ReactElement<GridCellProps>;
 
 export const UserGrid = (props: UserGridProps) => {
-  const { rows, cols, diceValues, player, totalDice, handleWin } = props;
+  const {
+    rows,
+    cols,
+    diceValues,
+    player,
+    totalDice,
+    tabIndexCounter,
+    handleWin,
+  } = props;
   // use a 2d array of GridCell components to render the grid
   const [grid, setGrid] = useState<IGridCell[][]>([]);
   // create a 2d array to map highlighted cells to the correct cell and set it to false
@@ -26,23 +35,45 @@ export const UserGrid = (props: UserGridProps) => {
     highlighted[row][col] = highlight;
     setHighlighted([...highlighted]);
   };
+
+  const randomNumberGenerator = () => {
+    // generate a random number between the total possible dice values
+    const max = totalDice * 6;
+    const min = totalDice;
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  };
+
   // create a 2d array of GridCell components
   const createGrid = () => {
     const grid: IGridCell[][] = [];
+    // keep track of cell values so that no duplicates are generated
+    const cellValues: number[] = [];
+    let tabIndex = 1;
     for (let i = 0; i < rows; i++) {
       grid[i] = [];
       highlighted[i] = [];
       for (let j = 0; j < cols; j++) {
+        // generate a random number between the total possible dice values
+        let value = randomNumberGenerator();
+        // check if the value is already in the cellValues array
+        while (cellValues.includes(value)) {
+          value = randomNumberGenerator();
+        }
+        // add the value to the cellValues array
+        cellValues.push(value);
+
         highlighted[i][j] = false;
         grid[i][j] = (
           <GridCell
             key={`${player}-${i}-${j}`}
             cellKey={`${player}-${i}-${j}`}
+            cellValue={value}
             diceValues={diceValues}
             highlight={highlighted[i][j]}
             updateHighlight={handleHighlight}
             position={`${i}-${j}`}
             totalDice={totalDice}
+            tabIndex={tabIndex * tabIndexCounter}
           />
         );
       }
@@ -115,13 +146,13 @@ export const UserGrid = (props: UserGridProps) => {
   return (
     <>
       <h2>{props.heading}</h2>
-      <Table striped bordered hover>
+      <Table striped bordered hover key={`table-${player}`}>
         <tbody>
           {grid.map((row, i) => (
-            <tr key={i}>
-              {row.map((cell, j) => (
-                <td key={j}>{cell}</td>
-              ))}
+            <tr key={`row-${i}`}>
+              {row.map((cell, j) => {
+                return cell;
+              })}
             </tr>
           ))}
         </tbody>

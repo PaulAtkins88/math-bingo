@@ -1,5 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useState } from 'react';
+import { Toast } from 'react-bootstrap';
 import About from './components/about/About';
 import { Game } from './components/game/Game';
 import GameSetup from './components/game/GameSetup';
@@ -42,6 +43,7 @@ function App() {
         </>
       ) : (
         <Game
+          key={`${gameSetup.rows}-${gameSetup.cols}-${gameSetup.dice}`}
           gameSetup={gameSetup}
           handleReset={handleReset}
           handleWin={handleWin}
