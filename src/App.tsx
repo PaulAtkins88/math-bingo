@@ -1,6 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { useState } from 'react';
-import { Toast } from 'react-bootstrap';
+import React, { useState } from 'react';
 import About from './components/about/About';
 import { Game } from './components/game/Game';
 import GameSetup from './components/game/GameSetup';
