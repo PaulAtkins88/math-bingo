@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Button, Col, Container, Row } from 'react-bootstrap';
 import GameSetupModel from '../../models/GameSetup.model';
 import { Dice } from './Dice';
@@ -15,7 +15,7 @@ export const Game = (props: GameProps) => {
   const { players, rows, cols, dice } = gameSetup;
 
   // keep track of the values returned from the dice
-  const [diceValues, setDiceValues] = useState(Array().fill(0));
+  const [diceValues, setDiceValues] = useState([] as number[]);
 
   const userGrids: JSX.Element[] = [];
   let tabIndexCounter = 1;
@@ -42,7 +42,7 @@ export const Game = (props: GameProps) => {
   };
 
   const handleReset = () => {
-    setDiceValues(Array().fill(0));
+    setDiceValues([]);
     props.handleReset();
   };
 

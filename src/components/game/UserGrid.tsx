@@ -1,4 +1,4 @@
-import { ReactElement, useEffect, useState } from 'react';
+import React, { ReactElement, useEffect, useState } from 'react';
 import { Table } from 'react-bootstrap';
 import { GridCell, GridCellProps } from './GridCell';
 
@@ -48,7 +48,7 @@ export const UserGrid = (props: UserGridProps) => {
     const grid: IGridCell[][] = [];
     // keep track of cell values so that no duplicates are generated
     const cellValues: number[] = [];
-    let tabIndex = 1;
+    const tabIndex = 1;
     for (let i = 0; i < rows; i++) {
       grid[i] = [];
       highlighted[i] = [];
@@ -141,6 +141,7 @@ export const UserGrid = (props: UserGridProps) => {
   }, [diceValues, grid, props.player]);
 
   // watch the grid array for changes
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
   useEffect(() => {}, [grid]);
 
   return (
@@ -150,7 +151,7 @@ export const UserGrid = (props: UserGridProps) => {
         <tbody>
           {grid.map((row, i) => (
             <tr key={`row-${i}`}>
-              {row.map((cell, j) => {
+              {row.map((cell) => {
                 return cell;
               })}
             </tr>
