@@ -1,6 +1,6 @@
-import React, { ReactElement, useEffect, useState } from 'react';
-import { Table } from 'react-bootstrap';
-import { GridCell, GridCellProps } from './GridCell';
+import React, { ReactElement, useEffect, useState } from "react";
+import { Table } from "react-bootstrap";
+import { GridCell, GridCellProps } from "./GridCell";
 
 interface UserGridProps {
   rows: number;
@@ -31,7 +31,7 @@ export const UserGrid = (props: UserGridProps) => {
   const [highlighted, setHighlighted] = useState<boolean[][]>([]);
 
   const handleHighlight = (highlight: boolean, position: string) => {
-    const [row, col] = position.split('-').map(Number);
+    const [row, col] = position.split("-").map(Number);
     highlighted[row][col] = highlight;
     setHighlighted([...highlighted]);
   };
@@ -79,6 +79,7 @@ export const UserGrid = (props: UserGridProps) => {
       }
     }
     setGrid(grid);
+
     setHighlighted(highlighted);
   };
 
@@ -146,8 +147,13 @@ export const UserGrid = (props: UserGridProps) => {
 
   return (
     <>
-      <h2>{props.heading}</h2>
-      <Table striped bordered hover key={`table-${player}`}>
+      <h2 className="mt-5 text-center">{props.heading}</h2>
+      <Table
+        bordered
+        hover
+        key={`table-${player}`}
+        className="mb-2 border border-5"
+      >
         <tbody>
           {grid.map((row, i) => (
             <tr key={`row-${i}`}>

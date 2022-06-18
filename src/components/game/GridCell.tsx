@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from "react";
 
 // an editable grid cell for placing a number in a grid
 export interface GridCellProps {
@@ -47,7 +47,7 @@ export const GridCell = (props: GridCellProps) => {
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter' || e.key === 'Escape' || e.key === 'Tab') {
+    if (e.key === "Enter" || e.key === "Escape" || e.key === "Tab") {
       setEditing(false);
     }
   };
@@ -63,17 +63,18 @@ export const GridCell = (props: GridCellProps) => {
         onClick={handleClick}
         tabIndex={tabIndex}
         onFocus={handleClick}
+        style={{ height: 100, width: 100, fontSize: 50, textAlign: "center" }}
       >
         {editing ? (
           <input
             ref={cellInput}
             id={`input-${cellKey}`}
-            type='number'
+            type="number"
             onChange={handleChange}
             value={value}
             onBlur={handleBlur}
             onKeyDown={handleKeyDown}
-            style={{ width: '100%', textAlign: 'center' }}
+            style={{ width: "100%", textAlign: "center" }}
             min={totalDice}
             max={totalDice * 6}
           />
@@ -83,11 +84,11 @@ export const GridCell = (props: GridCellProps) => {
             onClick={handleClick}
             onBlur={handleBlur}
             style={{
-              width: '100%',
-              textAlign: 'center',
-              cursor: 'hand',
-              justifyItems: 'center',
-              backgroundColor: highlighted ? '#ffc0cb' : '#ffffff',
+              width: "100%",
+              textAlign: "center",
+              cursor: "hand",
+              justifyItems: "center",
+              backgroundColor: highlighted ? "#ffc0cb" : "#ffffff",
             }}
           >
             {value}
