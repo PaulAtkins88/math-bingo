@@ -1,0 +1,7 @@
+{
+  // single quotes over double quotes
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "prettier.jsxSingleQuote": true,
+  "prettier.singleQuote": true
+}
