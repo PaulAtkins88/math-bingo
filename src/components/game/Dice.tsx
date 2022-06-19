@@ -1,17 +1,17 @@
-import React, { useEffect, useState } from "react";
-import { Col } from "react-bootstrap";
-import "bootstrap-icons/font/bootstrap-icons.css";
+import React, { useEffect, useState } from 'react';
+import { Col } from 'react-bootstrap';
+import 'bootstrap-icons/font/bootstrap-icons.css';
 
 const diceButton = {
   fontSize: 75,
   height: 120,
   width: 120,
-  backgroundColor: "transparent",
-  backgroundRepeat: "no-repeat",
-  border: "none",
-  cursor: "pointer",
-  overflow: "hidden",
-  outline: "none",
+  backgroundColor: 'transparent',
+  backgroundRepeat: 'no-repeat',
+  border: 'none',
+  cursor: 'pointer',
+  overflow: 'hidden',
+  outline: 'none',
 };
 
 interface DiceProps {
@@ -47,8 +47,8 @@ export const Dice = (props: DiceProps) => {
   };
 
   return (
-    <div className="d-flex justify-content-center text-center">
-      <Col sm={5} className="d-flex m-2 justify-content-center">
+    <div className='d-flex justify-content-center text-center'>
+      <Col sm={5} className='d-flex m-2 justify-content-center'>
         {/* show all the dice */}
         {diceValues.map((value, index) => {
           return (

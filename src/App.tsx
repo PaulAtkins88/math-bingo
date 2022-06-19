@@ -1,9 +1,9 @@
-import "bootstrap/dist/css/bootstrap.min.css";
-import React, { useState } from "react";
-import About from "./components/about/About";
-import { Game } from "./components/game/Game";
-import GameSetup from "./components/game/GameSetup";
-import GameSetupModel from "./models/GameSetup.model";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import React, { useState } from 'react';
+import About from './components/about/About';
+import { Game } from './components/game/Game';
+import GameSetup from './components/game/GameSetup';
+import GameSetupModel from './models/GameSetup.model';
 
 function App() {
   const [setupDone, setSetupDone] = useState(false);
@@ -32,8 +32,8 @@ function App() {
   };
 
   return (
-    <div className="App my-5">
-      <h1 style={{ textAlign: "center" }}>Maths Bingo</h1>
+    <div className='App my-5'>
+      <h1 style={{ textAlign: 'center' }}>Maths Bingo</h1>
 
       {!setupDone ? (
         <>

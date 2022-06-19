@@ -1,8 +1,8 @@
-import React, { useState } from "react";
-import { Button, Col, Container, Row } from "react-bootstrap";
-import GameSetupModel from "../../models/GameSetup.model";
-import { Dice } from "./Dice";
-import { UserGrid } from "./UserGrid";
+import React, { useState } from 'react';
+import { Button, Col, Container, Row } from 'react-bootstrap';
+import GameSetupModel from '../../models/GameSetup.model';
+import { Dice } from './Dice';
+import { UserGrid } from './UserGrid';
 
 interface GameProps {
   gameSetup: GameSetupModel;
@@ -47,8 +47,8 @@ export const Game = (props: GameProps) => {
   };
 
   return (
-    <Container fluid="sm">
-      <Row className="justify-content-center">{userGrids}</Row>
+    <Container fluid='sm'>
+      <Row className='justify-content-center'>{userGrids}</Row>
       <Row>
         <Col>
           <Dice
@@ -58,7 +58,7 @@ export const Game = (props: GameProps) => {
           />
         </Col>
       </Row>
-      <Row className="justify-content-center">
+      <Row className='justify-content-center'>
         <Col sm={1}>
           <Button onClick={handleReset}>Reset</Button>
         </Col>
