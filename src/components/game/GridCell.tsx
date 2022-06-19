@@ -63,6 +63,7 @@ export const GridCell = (props: GridCellProps) => {
         onClick={handleClick}
         tabIndex={tabIndex}
         onFocus={handleClick}
+        style={{ height: 100, width: 100, fontSize: 50, textAlign: 'center' }}
       >
         {editing ? (
           <input

@@ -3,10 +3,18 @@
 // the number of rows and columns for each player,
 // and the number of dice to be used in the game
 // it will then pass these values to back to the app component to be used in the game component
-
 import React, { useState } from 'react';
 import { Button, Col, Container, Form, Row } from 'react-bootstrap';
 import GameSetupModel from '../../models/GameSetup.model';
+
+const inputStyle = {
+  height: '100px',
+  width: '100px',
+  fontSize: 100,
+  border: '3px',
+  display: 'block',
+  margin: '0 auto',
+};
 
 interface GameSetupProps {
   gameSetup: GameSetupModel;
@@ -46,47 +54,51 @@ const GameSetup = (props: GameSetupProps) => {
   };
 
   return (
-    <Container fluid>
-      <Row>
-        <Col>
-          <h1 className='text-center'>Game Setup</h1>
-        </Col>
-      </Row>
-      <Form onSubmit={handleFormSubmit}>
-        <Row className='mb-3'>
-          <Form.Group as={Col} controlId='players'>
+    <Container fluid='sm'>
+      <Form className='' onSubmit={handleFormSubmit}>
+        <Row className='justify-content-center m-5'>
+          <Form.Group
+            as={Col}
+            xs={4}
+            sm={2}
+            controlId='rows'
+            className='text-center'
+          >
+            <Form.Label>Rows</Form.Label>
+            <Form.Control
+              style={inputStyle}
+              type='number'
+              value={rows}
+              onChange={(e) => setRows(Number(e.target.value))}
+              placeholder='Number of Rows'
+            />
             <Form.Label>Players</Form.Label>
             <Form.Control
+              style={inputStyle}
               type='number'
               value={players}
               onChange={(e) => setPlayers(Number(e.target.value))}
               placeholder='Number of Players'
             />
           </Form.Group>
-
-          <Form.Group as={Col} controlId='rows'>
-            <Form.Label>Rows</Form.Label>
-            <Form.Control
-              type='number'
-              value={rows}
-              onChange={(e) => setRows(Number(e.target.value))}
-              placeholder='Number of Rows'
-            />
-          </Form.Group>
-
-          <Form.Group as={Col} controlId='cols'>
+          <Form.Group
+            as={Col}
+            xs={4}
+            sm={2}
+            controlId='cols'
+            className='text-center'
+          >
             <Form.Label>Columns</Form.Label>
             <Form.Control
+              style={inputStyle}
               type='number'
               value={cols}
               onChange={(e) => setCols(Number(e.target.value))}
               placeholder='Number of Columns'
             />
-          </Form.Group>
-
-          <Form.Group as={Col} controlId='dice'>
             <Form.Label>Dice</Form.Label>
             <Form.Control
+              style={inputStyle}
               type='number'
               value={dice}
               onChange={(e) => setDice(Number(e.target.value))}
@@ -96,12 +108,12 @@ const GameSetup = (props: GameSetupProps) => {
         </Row>
         {/* Start game button and reset button centered on page with even spacing */}
         <Row className='justify-content-center'>
-          <Col xs={12} sm={6} md={4} lg={3}>
+          <Col xs={6} sm={4} md={3} lg={2}>
             <Button type='submit' className='w-100' variant='primary' size='lg'>
               Start Game
             </Button>
           </Col>
-          <Col xs={12} sm={6} md={4} lg={3}>
+          <Col xs={6} sm={4} md={3} lg={2}>
             <Button
               type='button'
               className='w-100'

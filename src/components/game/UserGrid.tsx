@@ -79,6 +79,7 @@ export const UserGrid = (props: UserGridProps) => {
       }
     }
     setGrid(grid);
+
     setHighlighted(highlighted);
   };
 
@@ -146,8 +147,13 @@ export const UserGrid = (props: UserGridProps) => {
 
   return (
     <>
-      <h2>{props.heading}</h2>
-      <Table striped bordered hover key={`table-${player}`}>
+      <h2 className='mt-5 text-center'>{props.heading}</h2>
+      <Table
+        bordered
+        hover
+        key={`table-${player}`}
+        className='mb-2 border border-5'
+      >
         <tbody>
           {grid.map((row, i) => (
             <tr key={`row-${i}`}>

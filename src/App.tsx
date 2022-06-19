@@ -32,7 +32,7 @@ function App() {
   };
 
   return (
-    <div className='App'>
+    <div className='App my-5'>
       <h1 style={{ textAlign: 'center' }}>Maths Bingo</h1>
 
       {!setupDone ? (
