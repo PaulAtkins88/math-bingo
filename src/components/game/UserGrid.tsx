@@ -1,4 +1,4 @@
-import React, { ReactElement, useEffect, useState } from 'react';
+import { ReactElement, useEffect, useState } from 'react';
 import { Table } from 'react-bootstrap';
 import { GridCell, GridCellProps } from './GridCell';
 
@@ -45,12 +45,12 @@ export const UserGrid = (props: UserGridProps) => {
 
   // create a 2d array of GridCell components
   const createGrid = () => {
-    const grid: IGridCell[][] = [];
+    const newGrid: IGridCell[][] = [];
     // keep track of cell values so that no duplicates are generated
     const cellValues: number[] = [];
     const tabIndex = 1;
     for (let i = 0; i < rows; i++) {
-      grid[i] = [];
+      newGrid[i] = [];
       highlighted[i] = [];
       for (let j = 0; j < cols; j++) {
         // generate a random number between the total possible dice values
@@ -63,7 +63,7 @@ export const UserGrid = (props: UserGridProps) => {
         cellValues.push(value);
 
         highlighted[i][j] = false;
-        grid[i][j] = (
+        newGrid[i][j] = (
           <GridCell
             key={`${player}-${i}-${j}`}
             cellKey={`${player}-${i}-${j}`}
@@ -78,7 +78,7 @@ export const UserGrid = (props: UserGridProps) => {
         );
       }
     }
-    setGrid(grid);
+    setGrid(newGrid);
 
     setHighlighted(highlighted);
   };

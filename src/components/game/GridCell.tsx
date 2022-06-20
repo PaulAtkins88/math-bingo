@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 // an editable grid cell for placing a number in a grid
 export interface GridCellProps {

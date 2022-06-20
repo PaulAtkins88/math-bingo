@@ -3,7 +3,7 @@
 // if the number is in the grid, the number will highlight in green
 // if the user gets a row, column or diagonal of highlighted numbers, they will win
 
-import React, { Accordion, Col, Container, Row } from 'react-bootstrap';
+import { Accordion, Col, Container, Row } from 'react-bootstrap';
 
 const About = () => {
   return (
@@ -11,7 +11,7 @@ const About = () => {
       <Container fluid='sm' className='about-container'>
         <Row>
           <Col>
-            <Accordion defaultActiveKey='0'>
+            <Accordion defaultActiveKey='1'>
               <Accordion.Item eventKey='0'>
                 <Accordion.Header>About</Accordion.Header>
                 <Accordion.Body>
