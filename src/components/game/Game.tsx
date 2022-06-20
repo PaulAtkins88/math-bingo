@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Button, Col, Container, Row } from 'react-bootstrap';
 import GameSetupModel from '../../models/GameSetup.model';
 import { Dice } from './Dice';

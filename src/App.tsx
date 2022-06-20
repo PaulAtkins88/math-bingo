@@ -1,5 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import About from './components/about/About';
 import { Game } from './components/game/Game';
 import GameSetup from './components/game/GameSetup';
@@ -15,8 +15,8 @@ function App() {
     dice: 2,
   });
 
-  const handleSubmit = (gameSetup: GameSetupModel) => {
-    setGameSetup(gameSetup);
+  const handleSubmit = (setup: GameSetupModel) => {
+    setGameSetup(setup);
     setSetupDone(true);
   };
 

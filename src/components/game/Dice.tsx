@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Col } from 'react-bootstrap';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 
@@ -22,12 +22,12 @@ interface DiceProps {
 
 export const Dice = (props: DiceProps) => {
   const { dice, value, onChange } = props;
-  const [newValue, setNewValue] = useState(value);
+  // const [newValue, setNewValue] = useState(value);
   // create state using a number array
   const [diceValues, setDiceValues] = useState(Array(dice).fill(0));
 
   useEffect(() => {
-    setNewValue(value);
+    // setNewValue(value);
   }, [value]);
 
   const handleClick = () => {
@@ -40,7 +40,7 @@ export const Dice = (props: DiceProps) => {
     setDiceValues(newDiceValues);
     // get the sum of the dice
     const newValue = newDiceValues.reduce((acc, curr) => acc + curr, 0);
-    setNewValue(newValue);
+    // setNewValue(newValue);
 
     // call the onChange method
     onChange(newValue);
@@ -50,10 +50,10 @@ export const Dice = (props: DiceProps) => {
     <div className='d-flex justify-content-center text-center'>
       <Col sm={5} className='d-flex m-2 justify-content-center'>
         {/* show all the dice */}
-        {diceValues.map((value, index) => {
+        {diceValues.map((die, index) => {
           return (
             <button
-              className={`bi bi-dice-${value || 1}`}
+              className={`bi bi-dice-${die || 1}`}
               style={diceButton}
               key={index}
               onClick={handleClick}

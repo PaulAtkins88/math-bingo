@@ -3,7 +3,7 @@
 // the number of rows and columns for each player,
 // and the number of dice to be used in the game
 // it will then pass these values to back to the app component to be used in the game component
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Button, Col, Container, Form, Row } from 'react-bootstrap';
 import GameSetupModel from '../../models/GameSetup.model';
 
